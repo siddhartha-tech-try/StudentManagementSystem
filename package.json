@@ -1,0 +1,23 @@
+{
+  "name": "student-management-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-stack student management system with React, Express, Prisma, and PostgreSQL.",
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "build:server": "npm --prefix server run build",
+    "build:client": "npm --prefix client run build",
+    "build": "npm run build:server && npm run build:client"
+  },
+  "keywords": [
+    "student-management",
+    "react",
+    "express",
+    "postgresql",
+    "prisma"
+  ],
+  "author": "",
+  "license": "MIT"
+}
