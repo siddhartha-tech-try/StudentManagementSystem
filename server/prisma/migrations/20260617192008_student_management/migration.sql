@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "ActivityLog" ALTER COLUMN "id" DROP DEFAULT;
+
+-- AlterTable
+ALTER TABLE "Student" ALTER COLUMN "id" DROP DEFAULT;

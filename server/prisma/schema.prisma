@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum ActivityAction {
+  CREATE
+  UPDATE
+  DELETE
+}
+
+model Student {
+  id              String   @id @default(uuid()) @db.Uuid
+  admissionNumber String   @unique @db.VarChar(32)
+  name            String   @db.VarChar(120)
+  course          String   @db.VarChar(120)
+  year            Int
+  dateOfBirth     DateTime @db.Date
+  email           String   @db.VarChar(160)
+  mobileNo        String   @db.VarChar(20)
+  gender          Gender
+  address         String   @db.Text
+  photoUrl        String?  @db.VarChar(500)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([admissionNumber])
+  @@index([name])
+  @@index([email])
+  @@index([mobileNo])
+  @@index([course])
+  @@index([year])
+  @@index([gender])
+  @@index([createdAt])
+}
+
+model ActivityLog {
+  id              String         @id @default(uuid()) @db.Uuid
+  action          ActivityAction
+  entityType      String         @db.VarChar(80)
+  entityId        String?        @db.Uuid
+  admissionNumber String?        @db.VarChar(32)
+  message         String         @db.VarChar(255)
+  metadata        Json?
+  createdAt       DateTime       @default(now())
+
+  @@index([action])
+  @@index([entityType])
+  @@index([entityId])
+  @@index([admissionNumber])
+  @@index([createdAt])
+}
