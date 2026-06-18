@@ -118,3 +118,15 @@ For the backend Render web service, use:
 - Health check path: `/api/health`
 
 Set `DATABASE_URL` to the hosted PostgreSQL connection string and `CLIENT_URL` to the deployed frontend origin. The repository also includes a root `render.yaml` Blueprint with these settings.
+
+For a Vercel frontend and Render backend:
+
+```env
+# Render
+CLIENT_URL=https://student-management-system-iota-one.vercel.app
+
+# Vercel
+VITE_API_URL=https://your-api.onrender.com/api
+```
+
+The client also normalizes a Render base URL without `/api`, but including `/api` explicitly is recommended. After changing a Vercel environment variable, redeploy the frontend so Vite can include it in the production build.

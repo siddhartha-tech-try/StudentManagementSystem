@@ -13,6 +13,6 @@ services:
       - key: DATABASE_URL
         sync: false
       - key: CLIENT_URL
-        sync: false
+        value: https://student-management-system-iota-one.vercel.app
       - key: MAX_FILE_SIZE_MB
         value: "2"

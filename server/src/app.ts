@@ -8,16 +8,19 @@ import { apiRouter } from "./routes";
 
 export const app = express();
 
+const normalizeOrigin = (origin: string) => origin.trim().replace(/\/+$/, "");
+
 const allowedOrigins = new Set([
-  env.CLIENT_URL,
+  ...env.CLIENT_URL.split(",").map(normalizeOrigin),
   "http://localhost:5173",
-  "http://127.0.0.1:5173"
+  "http://127.0.0.1:5173",
+  "https://student-management-system-iota-one.vercel.app"
 ]);
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.has(origin)) {
+      if (!origin || allowedOrigins.has(normalizeOrigin(origin))) {
         callback(null, true);
         return;
       }
