@@ -107,3 +107,14 @@ npm run preview
 
 - [API Reference](docs/api-reference.md)
 - [Setup and Database Guide](docs/setup-and-database.md)
+
+## Render Deployment
+
+For the backend Render web service, use:
+
+- Root directory: `server`
+- Build command: `npm ci --include=dev && npm run build:render`
+- Start command: `npm start`
+- Health check path: `/api/health`
+
+Set `DATABASE_URL` to the hosted PostgreSQL connection string and `CLIENT_URL` to the deployed frontend origin. The repository also includes a root `render.yaml` Blueprint with these settings.
